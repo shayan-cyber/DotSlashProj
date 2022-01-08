@@ -50,3 +50,17 @@ def get_playground_details(request,name):
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         return Response({"message":"No playground found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+from . utils import send_wa_msg
+@api_view(['POST'])
+def invite_others(request):
+    try:
+        data = request.data
+        phone_no = data['no'] 
+        link = data['link']
+        s= "Someone has invited you to join the CodeTogether Room. Please click on the link to join the room " +" \n " + str(link)
+        send_wa_msg(s)
+        return Response({"message":"Invitation sent"}, status=status.HTTP_200_OK)
+    except:
+        return Response({"message":"Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)

@@ -142,3 +142,39 @@ class WhiteboardConsumer(AsyncJsonWebsocketConsumer):
             )
     async def disconnect(self,msg):
         print("disconnect")
+
+
+
+
+
+class ChatConsumer(AsyncJsonWebsocketConsumer):
+
+    async def connect(self):
+        await self.accept()
+    
+    async def receive_json(self, content):
+        data = content
+        if data['command']== 'join':
+            await self.channel_layer.group_add(
+                data['groupname'],
+                self.channel_name
+            )
+        elif data['command'] == 'send':
+            await self.channel_layer.group_send(
+                data['groupname'],
+                {
+                    'type':'chat.message',
+                    'message':data['message'],
+                    'token':data['token'],
+                    'username':data['user_name']
+                }
+
+            )
+    async def disconnect(self, msg):
+        print("disconnect")
+    async def chat_message(self,event):
+        await self.send_json({
+            'message':event['message'],
+            'token':event['token'],
+            'username':event['username']
+        })
