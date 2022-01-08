@@ -10,6 +10,11 @@ import CodeEditorImg from "../public/images/code-editor.png";
 import { motion } from 'framer-motion';
 import {BsArrowUpRightCircle} from 'react-icons/bs'
 
+
+import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useRouter } from 'next/router'
+
 const leftVariants = {
   hidden: {
     opacity: 0,
@@ -44,6 +49,22 @@ const rightVariants = {
 
 
 export default function Home() {
+
+  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
+  const [auth_token, setAuthToken] = useState("");
+  const [username, setUsername] = useState("");
+  const [cookieUsername, setCookieUsername, removeCookieUsername] = useCookies(["username"]);
+  const [roomname, setRoomname] = useState("");
+  const router = useRouter();
+  useEffect(() => {
+    if (cookie["token"]) {
+      setAuthToken(cookie["token"]);
+    }
+    if (cookieUsername["username"]) {
+      setUsername(cookieUsername["username"]);
+
+    }
+  });
 
 
 
