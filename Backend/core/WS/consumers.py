@@ -103,6 +103,12 @@ class WhiteboardConsumer(AsyncJsonWebsocketConsumer):
             'data':event['data']
 
         })
+    async def wb_clear(self,event):
+        await self.send_json({
+            'token':event['token'],
+            'username':event['username'],
+            'command':'canvas-clear'
+        })
     
     async def receive_json(self, content):
         data = content
