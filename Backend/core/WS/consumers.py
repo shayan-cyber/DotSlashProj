@@ -87,3 +87,58 @@ class CodeConsumer(AsyncJsonWebsocketConsumer):
             'username':event['username']
 
         })
+
+
+
+
+
+class WhiteboardConsumer(AsyncJsonWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+    async def wb_message(self,event):
+        await self.send_json({
+            'token':event['token'],
+            'username':event['username'],
+            'command':'canvas-data',
+            'data':event['data']
+
+        })
+    async def wb_clear(self,event):
+        await self.send_json({
+            'token':event['token'],
+            'username':event['username'],
+            'command':'canvas-clear'
+        })
+    
+    async def receive_json(self, content):
+        data = content
+        if data['command'] == 'join':
+            print("join")
+            await self.channel_layer.group_add(
+                data['groupname'],
+                self.channel_name
+            )
+        elif data['command'] == 'canvas-data':
+            print("canvas-data")
+            await self.channel_layer.group_send(
+                data['groupname'],
+                {
+                    'type':'wb_message',
+                    'token':data['token'],
+                    'username':data['user_name'],
+                    'data':data['data']
+                }
+            )
+        elif data['command']== 'canvas-clear':
+            print("canvas-clear")
+            await self.channel_layer.group_send(
+                data['groupname'],
+                {
+                    'type':'wb_clear',
+                    'token':data['token'],
+                    'username':data['user_name']
+
+                }
+            )
+    async def disconnect(self,msg):
+        print("disconnect")

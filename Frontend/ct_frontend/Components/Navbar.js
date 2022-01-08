@@ -1,10 +1,28 @@
 import Link from "next/link";
-import { useState } from "react";
-import Logo from '../public/images/logo_CT.svg'
+import { useCookies } from "react-cookie";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Logo from "../public/images/logo_CT.svg";
 import Image from "next/image";
 
 export default function Navbar() {
-
+  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
+  const [auth_token, setAuthToken] = useState("");
+  const [cookieUsername, setCookieUsername, removeCookieUsername] = useCookies([
+    "username",
+  ]);
+  const router = useRouter();
+  useEffect(() => {
+    if (cookie["token"]) {
+      setAuthToken(cookie["token"]);
+    }
+  });
+  const handleLogout = () => {
+    removeCookie("token");
+    removeCookieUsername("username");
+    setAuthToken("");
+    router.push("/");
+  };
 
   const [active, setActive] = useState(false);
 
@@ -14,12 +32,10 @@ export default function Navbar() {
 
   return (
     <>
-      
-
       <nav className="flex items-center flex-wrap bg-bgBlack p-4">
         <Link href="/">
           <a className="inline-flex items-center p-2 lg:ml-8">
-            <Image src={Logo}/>
+            <Image src={Logo} />
           </a>
         </Link>
 
@@ -47,7 +63,8 @@ export default function Navbar() {
           className={`${
             active ? "" : "hidden"
           }   w-full md:inline-flex md:flex-grow md:w-auto`}
-         onClick={handleClick}>
+          onClick={handleClick}
+        >
           <div className="md:inline-flex md:flex-row md:ml-16 md:mr-auto md:w-auto w-full md:justify-between md:items-center items-center flex flex-col md:h-auto md:space-x-3">
             <Link href="/">
               <a
@@ -67,7 +84,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-{/*          
+          {/*          
             <button
               id="loginbtn"
               className="md:inline-flex md:w-auto w-full px-6 items-center justify-center rounded-md py-2 ease-in-out duration-300 md:mr-10 font-semibold"
@@ -75,9 +92,18 @@ export default function Navbar() {
             >
               Log Out
             </button> */}
-       
+
+          {auth_token ? (
+            <button
+              id="loginbtn"
+              className="md:inline-flex md:w-auto w-full px-6 items-center justify-center rounded-md py-2 ease-in-out duration-300 md:mr-10 font-semibold"
+              onClick={handleLogout}
+            >
+              Log Out
+            </button>
+          ) : (
             <>
-              <Link href="/">
+              <Link href="/register">
                 <button
                   id="signup"
                   className="md:inline-flex md:w-auto w-full items-center justify-center rounded px-6 py-2 ease-in-out duration-300 md:mr-4 font-semibold"
@@ -86,7 +112,7 @@ export default function Navbar() {
                 </button>
               </Link>
 
-              <Link href="/">
+              <Link href="/login">
                 <button
                   id="loginbtn"
                   className="md:inline-flex md:w-auto w-full items-center justify-center rounded px-6 py-2 ease-in-out duration-300 md:mr-10 font-semibold"
@@ -95,7 +121,7 @@ export default function Navbar() {
                 </button>
               </Link>
             </>
-        
+          )}
         </div>
       </nav>
     </>
