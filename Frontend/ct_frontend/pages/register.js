@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import axios from 'axios';
-import Alert from "../Components/Alert";
+import Alert from "../components/Alert";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
-import Spinner from "../Components/Spinner";
+import Spinner from "../components/Spinner";
 import { useRouter } from "next/router";
 
 

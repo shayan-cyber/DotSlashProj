@@ -53,6 +53,7 @@ def get_playground_details(request,name):
 
 
 from . utils import send_wa_msg
+
 @api_view(['POST'])
 def invite_others(request):
     try:

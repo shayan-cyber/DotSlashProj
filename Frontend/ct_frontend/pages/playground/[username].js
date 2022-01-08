@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic";
-import { languages, themes } from "../../Components/Constants";
-const AceEdit = dynamic(() => import("../../Components/PlayGround/Editor"), {
+import { languages, themes } from "../../components/Constants";
+const AceEdit = dynamic(() => import("../../components/PlayGround/Editor"), {
   ssr: false,
 });
 const AceComplier = dynamic(
-  () => import("../../Components/PlayGround/Compiler"),
+  () => import("../../components/PlayGround/Compiler"),
   {
     ssr: false,
   }
@@ -16,9 +16,9 @@ import { MdDownloading } from "react-icons/md";
 import {IoMdClose} from "react-icons/io";
 
 import axios from "axios";
-import ToolBar from "../../Components/PlayGround/ToolBar";
+import ToolBar from "../../components/PlayGround/ToolBar";
 import { useRouter } from "next/router";
-import Loader from "../../Components/Loader";
+import Loader from "../../components/Loader";
 import Script from "next/script";
 
 import {MdOutlineHelpOutline} from "react-icons/md";
@@ -237,12 +237,22 @@ export default function PlayGround({ username }) {
 
 
 
-  
+  const handleInvite = () => {
+    axios.post('http://127.0.0.1:8000/api/invite-others/',{
+      link:`/playground/${cookieUsername["username"]}`,
+      no:phoneNo
+    }).then(res=>{
+      console.log(res)
+      setModaltoggle(false)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+
+  }
 
 
   
-
-
 
 
   
@@ -251,7 +261,7 @@ export default function PlayGround({ username }) {
     <>
     
 
-   
+    
     
 
 
@@ -275,7 +285,7 @@ export default function PlayGround({ username }) {
           </div>
 
           <div className="px-4 mt-2 mb-4" id="send-button">
-            <button className="p-2 bg-primary text-white w-full rounded-[12px]" onClick={()=>{console.log("hello");}}>Send</button>
+            <button className="p-2 bg-primary text-white w-full rounded-[12px]" onClick={()=>{handleInvite()}}>Send</button>
           </div>
 
           

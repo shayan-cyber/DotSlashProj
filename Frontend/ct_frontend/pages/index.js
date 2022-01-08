@@ -1,4 +1,4 @@
-
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 // import styles from '../styles/Home.module.css'
@@ -7,13 +7,11 @@ import CodeImg from "../public/images/code.png";
 import ArrowRightImg from "../public/images/arrow-right.png";
 import CodeEditorImg from "../public/images/code-editor.png";
 
-import { motion } from 'framer-motion';
-import {BsArrowUpRightCircle} from 'react-icons/bs'
-
-
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion';
+import {BsArrowUpRightCircle} from 'react-icons/bs'
 
 const leftVariants = {
   hidden: {
@@ -49,7 +47,6 @@ const rightVariants = {
 
 
 export default function Home() {
-
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   const [auth_token, setAuthToken] = useState("");
   const [username, setUsername] = useState("");
@@ -65,7 +62,6 @@ export default function Home() {
 
     }
   });
-
 
 
   return (
@@ -95,7 +91,7 @@ export default function Home() {
                   <a><h1 className="text-3xl">Get Started</h1></a>
                 </Link>
                 
-                <Link href="/">
+                <Link href="/createroom">
                   <button className="text-4xl mx-4 text-primary  animate-pulse">
                     <BsArrowUpRightCircle/>
                   </button>
@@ -135,7 +131,7 @@ export default function Home() {
               who are present in the room. Run code, share code and download code , get indulged in this wondeful environment.
               </p>
               <div id="explore-text" className="mt-5">
-              <Link href="/">
+              <Link href="/createroom">
                   <a className="cursor-pointer flex">
                     <span className="text-xl mr-2">Explore now</span>
                     <Image src={ArrowRightImg} />
@@ -156,7 +152,7 @@ export default function Home() {
               Smooth voice call to communicate , discuss codes through chat.
               </p>
               <div id="explore-text" className="mt-5">
-                <Link href="/">
+                <Link href="/createroom">
                   <a className="cursor-pointer flex">
                     <span className="text-xl mr-2">Explore now</span>
                     <Image src={ArrowRightImg} />
@@ -178,7 +174,7 @@ export default function Home() {
               Discuss and plan the algorithmic approaches with others , do rough work through realtime whiteboard.
               </p>
               <div id="explore-text" className="mt-5">
-              <Link href="/">
+              <Link href="/createroom">
                   <a className="cursor-pointer flex">
                     <span className="text-xl mr-2">Explore now</span>
                     <Image src={ArrowRightImg} />
