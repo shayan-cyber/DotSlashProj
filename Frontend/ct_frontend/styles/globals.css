@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body{
+    background-color:#1A1A1A;
+    color: #c5c5c5;
+    font-family: 'Poppins', sans-serif;
+}
+
+#header-text{
+    background: rgb(65,90,255);
+
+    background: linear-gradient(338deg, rgba(65,90,245,1) 0%, rgba(190,36,254,1) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#signup{
+    background: rgba(190,36,254,1);
+    color:white;
+    background: linear-gradient(to top, rgba(151,88,245,1) 0%, rgba(190,36,254,1) 80%);
+    border:1px solid #1A1A1A;
+    cursor: pointer;
+}
+
+#signup:hover{
+    background: #1A1A1A;
+    color:rgba(190,36,254,1);
+    border:1px solid rgba(190,36,254,1);
+
+}
+
+#loginbtn{
+    background: #1A1A1A;
+    color:rgba(190,36,254,1);
+    border:1px solid rgba(190,36,254,1);
+}
+
+#loginbtn:hover{
+    
+    background: rgba(190,36,254,1);
+    color:white;
+    background: linear-gradient(to top, rgba(151,88,245,1) 0%, rgba(190,36,254,1) 80%);
+    border:1px solid #1A1A1A;
+
+}
+
+#navbtn:hover{
+    background: rgba(190,36,254,1);
+    color:white;
+    background: linear-gradient(to top, rgba(151,88,245,1) 0%, rgba(190,36,254,1) 80%);
+}
+
+#explore-text{
+    background: rgb(0,153,255,1);
+
+    background: linear-gradient(180deg, #0099FF 2%, #9758F5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
