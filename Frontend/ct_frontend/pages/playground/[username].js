@@ -262,7 +262,7 @@ export default function PlayGround({ username }) {
     
 
     
-    
+    <Script src="https://static.opentok.com/v2/js/opentok.min.js"></Script>
 
 
       {ws && AceComplier ? (

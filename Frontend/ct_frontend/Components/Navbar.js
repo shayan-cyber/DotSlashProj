@@ -74,7 +74,7 @@ export default function Navbar() {
                 Home
               </a>
             </Link>
-            <Link href="/">
+            <Link href="/updates">
               <a
                 id="navbtn"
                 className="md:inline-flex md:w-auto w-full px-6 py-2 rounded text-white ease-in-out duration-300"

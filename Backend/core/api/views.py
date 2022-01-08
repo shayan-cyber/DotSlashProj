@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from . models import Playground
+from . models import Playground,OpenTokSession
 
 
 from . serializers import (
@@ -65,3 +65,39 @@ def invite_others(request):
         return Response({"message":"Invitation sent"}, status=status.HTTP_200_OK)
     except:
         return Response({"message":"Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+from opentok import Client
+from opentok import Roles
+api_key = "47411641"
+api_secret = "8959c2fafc6c26952ce2143b89b924dab131d73c"
+
+@api_view(['POST'])
+def generate_opentok_session_token(request):
+    
+    
+    
+    opentok_sdk = Client(api_key, api_secret)
+    data = request.data
+    print("generate_opentok_session_token")
+    user_name = data['user_name']
+    group_name = data['groupname']
+    print(user_name)
+    print(group_name)
+    user_obj = get_object_or_404(User, username = group_name)
+    obj,created = OpenTokSession.objects.get_or_create(owner=user_obj)
+    if created :
+        
+        session = opentok_sdk.create_session()
+        print(session.session_id)
+        obj.session_id = session.session_id
+        obj.save()
+        sessionID = session.session_id
+    else:
+        sessionID = obj.session_id
+    token = opentok_sdk.generate_token(sessionID,data=f'{user_name}')
+    return Response({"session_id":sessionID,"token":token}, status=status.HTTP_200_OK)
+
+
