@@ -19,6 +19,7 @@ Django==4.0.1
 django-cors-headers==3.10.1
 djangorestframework==3.13.1
 ecdsa==0.17.0
+google==3.0.0
 hiredis==2.0.0
 html5lib==1.1
 hyperlink==21.0.0
