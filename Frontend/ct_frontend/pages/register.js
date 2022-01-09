@@ -55,7 +55,7 @@ export default function Register() {
     else {
       setLoading(true);
       axios
-        .post("http://127.0.0.1:8000/api/register/", {
+        .post("http://codetogetherback.herokuapp.com/api/register/", {
           username: username,
           first_name: fullname,
           email: email,

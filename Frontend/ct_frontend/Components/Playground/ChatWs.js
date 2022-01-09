@@ -22,7 +22,7 @@ export default function ChatWs({username}) {
   const [ws, setWs] = useState(undefined);
   const [con, setCon] = useState(false);
   useEffect(()=>{
-      setWs(new WebSocket("ws://127.0.0.1:8000/ws/chat/"))
+      setWs(new WebSocket("ws://codetogetherback.herokuapp.com/ws/chat/"))
       setCon(true);
 
   },[])

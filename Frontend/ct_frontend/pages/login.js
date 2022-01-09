@@ -37,7 +37,7 @@ export default function Login() {
            
         }else{
           setLoading(true)
-           axios.post("http://127.0.0.1:8000/api-token-auth/", {
+           axios.post("http://codetogetherback.herokuapp.com/api-token-auth/", {
             username: username,
             password: password
             })
@@ -64,7 +64,7 @@ export default function Login() {
             console.log("auth: ",resp);
             
 
-            axios.post('http://127.0.0.1:8000/api/get_user_details/',{
+            axios.post('http://codetogetherback.herokuapp.com/api/get_user_details/',{
               token:resp
             }).then(res=>{
             

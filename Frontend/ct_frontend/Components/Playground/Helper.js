@@ -15,7 +15,7 @@ export default function Helper({ toglleFun, query }) {
 
   useEffect(() => {
     axios
-      .post("http://127.0.0.1:8000/api/help_portal/", {
+      .post("http://codetogetherback.herokuapp.com/api/help_portal/", {
         query: query,
       })
       .then((res) => {

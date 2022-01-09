@@ -73,7 +73,7 @@ export default function PlayGround({ username }) {
   const [ws, setWs] = useState(undefined);
   const [con, setCon] = useState(false);
   useEffect(() => {
-    setWs(new WebSocket("ws://127.0.0.1:8000/ws/code/"));
+    setWs(new WebSocket("wss://codetogetherback.herokuapp.com/ws/code/"));
     setCon(true);
   }, []);
 
@@ -120,7 +120,7 @@ export default function PlayGround({ username }) {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/get_playground_details/${username}`)
+      .get(`http://codetogetherback.herokuapp.com/api/get_playground_details/${username}`)
       .then((res) => {
         if (res.status === 200) {
           if (res.data.code) {
@@ -238,7 +238,7 @@ export default function PlayGround({ username }) {
 
 
   const handleInvite = () => {
-    axios.post('http://127.0.0.1:8000/api/invite-others/',{
+    axios.post('http://codetogetherback.herokuapp.com/api/invite-others/',{
       link:`https://code-together-eight.vercel.app/playground/${cookieUsername["username"]}`,
       no:phoneNo
     }).then(res=>{

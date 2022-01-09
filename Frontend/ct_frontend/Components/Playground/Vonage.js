@@ -74,7 +74,7 @@ export default function Vonage({ username, handleToggle }) {
   var temp = [];
   useEffect(() => {
     axios
-      .post("http://127.0.0.1:8000/api/opentok-token/", {
+      .post("http://codetogetherback.herokuapp.com/api/opentok-token/", {
         user_name: cookieUsername.username,
         groupname: "shayan",
       })
