@@ -151,7 +151,7 @@ Run the frontend
 
 ## Tech Stack
 
-**Client:** Next.JS, TailwindCSS, Frame motion, React Icons
+**Client:** Next.JS, TailwindCSS, Framer motion, React Icons
 
 **Server:** Python, Django
 
