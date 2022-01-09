@@ -151,7 +151,7 @@ Run the frontend
 
 ## Tech Stack
 
-**Client:** Next.JS, TailwindCSS
+**Client:** Next.JS, TailwindCSS, Frame motion, React Icons
 
 **Server:** Python, Django
 
@@ -163,8 +163,16 @@ Run the frontend
 
 ## Resources Used
 
-- For compiling code : Paiza.io
+- For compiling code : [API_Paiza](https://paiza.io/en)
 
-- For editor ui : ACE editor
+- For editor ui : [ACE_editor](https://ace.c9.io/)
 
-- For audio : Vonage
+- For contest details : [Kontests_API](https://kontests.net/api)
+
+
+
+
+
+## VOICE POWERED BY:
+
+![](https://i.imgur.com/T5tKYug.png)
