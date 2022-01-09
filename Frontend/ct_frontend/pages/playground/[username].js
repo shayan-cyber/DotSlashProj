@@ -20,7 +20,7 @@ import ToolBar from "../../components/PlayGround/ToolBar";
 import { useRouter } from "next/router";
 import Loader from "../../components/Loader";
 import Script from "next/script";
-
+import Helper from "../../components/PlayGround/Helper";
 import {MdOutlineHelpOutline} from "react-icons/md";
 
 export default function PlayGround({ username }) {
@@ -239,7 +239,7 @@ export default function PlayGround({ username }) {
 
   const handleInvite = () => {
     axios.post('http://127.0.0.1:8000/api/invite-others/',{
-      link:`/playground/${cookieUsername["username"]}`,
+      link:`https://code-together-eight.vercel.app/playground/${cookieUsername["username"]}`,
       no:phoneNo
     }).then(res=>{
       console.log(res)
@@ -252,17 +252,24 @@ export default function PlayGround({ username }) {
   }
 
 
-  
+  const [helpertoggle, setHelpertoggle] = useState(false);
+  const handleHelperToggle = () => {
+    console.log("helper toggle: ", helpertoggle);
+    setHelpertoggle(!helpertoggle);
+    
+  }
+
+  const [query, setQuery] = useState("");
 
 
   
 
   return (
     <>
-    
-
-    
     <Script src="https://static.opentok.com/v2/js/opentok.min.js"></Script>
+
+    {helpertoggle && <Helper toglleFun={handleHelperToggle} query={query}/>}
+    
 
 
       {ws && AceComplier ? (
@@ -304,7 +311,20 @@ export default function PlayGround({ username }) {
         lang={lang}
       />
 
-        
+        <div className="flex justify-end my-2">
+          <div className="search-bar px-3 py-2 flex items-center">
+            <label className="text-2xl text-white mx-2 animate-pulse "><MdOutlineHelpOutline/></label>
+            <input type="text" className="bg-offBlack rounded-[5px] p-2 w-[60vw] md:w-[30vw]" placeholder="Type Your Query.." value={query} onChange={(e)=>{
+              setQuery(e.target.value)
+            
+              }}/>
+            <button className="bg-transparent border-2 border-blue-600 p-2 text-offWhite rounded-[5px] ml-1 hover:text-white hover:shadow-sm hover:shadow-blue-500/50" onClick={()=>{
+              setHelpertoggle(true)
+              
+              }}>Search</button>
+          </div>
+
+        </div>
 
 
 
