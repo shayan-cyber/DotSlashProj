@@ -3,6 +3,8 @@
 CodeTogether is a platform that aims to bring all the developers and coders together to appreciate collaborative coding by resolving issues faced by programmers on normal IDEs/platforms. It allows developers to communicate with their fellow developers or collaborators through online voice call and realtime chat. Besides, the whiteboard makes the framing of an algorithm easier by helping programmers working collaboratively to discuss and plan their approach together. The saved code of one collaborator is easily reflected to the others allowing them to save the changes in their codes. Moreover, in case of any coding related queries, the relevant articles can prove to be a helping hand for programmers.
 
 
+https://user-images.githubusercontent.com/65186501/148670091-aefd2c2c-359f-4197-89a8-e45b0baa6d16.mp4
+
 
 
 ![Logo](https://i.imgur.com/f7hoxjZ.png)
