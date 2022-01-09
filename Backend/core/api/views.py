@@ -101,3 +101,31 @@ def generate_opentok_session_token(request):
     return Response({"session_id":sessionID,"token":token}, status=status.HTTP_200_OK)
 
 
+try:
+	from googlesearch import search
+except ImportError:
+	print("No module named 'google' found")
+from . scraper import scrape
+
+
+
+@api_view(['POST'])
+def help_portal(request):
+    # to search
+    try:
+        data = request.data
+        query = data['query']
+        # query = "strings in c"
+        data_list = []
+        for j in search(query, tld="co.in", num=10, stop=10, pause=2):
+            # print(j)
+            if "www.geeksforgeeks.org" in str(j):
+                # print(j)
+                
+                data_list.append(j)
+        # print(data_list)
+        article = scrape(str(data_list[0]))
+        # print(data_list)
+        return Response({"message":"Help portal", "article":article, "link":data_list[0]}, status=status.HTTP_200_OK)
+    except:
+        return Response({"message":"Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
