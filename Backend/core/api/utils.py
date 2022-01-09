@@ -2,8 +2,8 @@ import requests
 import os
 from twilio.rest import Client
 def send_wa_msg(s):
-    account_sid = 'AC5473461a6f2bf3656222a912f4249936'
-    auth_token = '5a071453118b01360d0281955726e616'
+    account_sid = 'Your SID'
+    auth_token = '#your token'
     client = Client(account_sid, auth_token)
     print("sending...")
 

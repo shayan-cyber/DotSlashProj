@@ -71,8 +71,8 @@ def invite_others(request):
 
 from opentok import Client
 from opentok import Roles
-api_key = "47411641"
-api_secret = "8959c2fafc6c26952ce2143b89b924dab131d73c"
+api_key = "your key"
+api_secret = "your secret"
 
 @api_view(['POST'])
 def generate_opentok_session_token(request):
