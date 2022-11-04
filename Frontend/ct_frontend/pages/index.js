@@ -192,7 +192,7 @@ export default function Home() {
 
         {/* editor image */}
         <div className="mb-2 flex justify-center">
-          <Image src={CodeEditorImg} />
+          <Image src={CodeEditorImg} priority="true" />
         </div>
 
      
